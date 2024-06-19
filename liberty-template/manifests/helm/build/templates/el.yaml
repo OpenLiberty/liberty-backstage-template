@@ -1,0 +1,26 @@
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: {{ .Values.app.name }}-el
+spec:
+  serviceAccountName: pipeline
+  triggers:
+  - name: git-listener
+    interceptors:
+    - ref:
+        name: cel
+      params:
+      - name: secretRef
+        value:
+          secretKey: secret
+          secretName: {{ .Values.app.name }}-webhook-secret
+      - name: "filter"
+        value: 'body["ref"].contains("{{ .Values.git.branch }}")'
+      - name: "overlays"
+        value: null
+    bindings:
+      - kind: ClusterTriggerBinding
+        ref: git-push
+    template:
+      ref: {{ .Values.app.name }}-run-pipeline

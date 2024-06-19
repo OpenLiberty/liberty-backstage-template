@@ -1,0 +1,17 @@
+# -------------------------------------------------
+# DO NOT EDIT THIS
+# doc site and hosting specifics
+site_name: ${{values.component_id}}-docs
+site_description: ${{values.description}}
+docs_dir: docs
+repo_url: https://${{values.git_host}}/${{values.repoOwner}}/${{values.repoName}}
+edit_uri: edit/main/docs
+plugins:
+  - techdocs-core
+# -------------------------------------------------
+
+# -------------------------------------------------
+# CONTENT RELATED -> CHANGE AS NEEDED :)
+nav:
+  - Overview: index.md
+# -------------------------------------------------
