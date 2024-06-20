@@ -24,4 +24,11 @@ In order to use this template in Backstage/RHDH the plugins must be properly con
 - GitHub Actions plugin installed and set up. ([Backstage](https://github.com/backstage/community-plugins/tree/main/workspaces/github-actions/plugins/github-actions))
 
 ## Usage
-Once all the prerequisites are set up you can use this template with the following steps
+Once all the prerequisites are set up you can use this template with the following steps:
+1. Click "Create" in your Backstage instance.
+2. Click "Register Existing Component" on the top right.
+3. Add the following link into the URL: `https://github.com/OpenLiberty/liberty-backstage-demo/blob/main/liberty-template/template.yaml` and click Analyze.
+4. Click on "Create" again to view templates.
+5. Click on "Liberty Getting Started" and follow the instructions.
+
+
