@@ -1,5 +1,5 @@
 # Open Liberty Backstage Template
-This is a sample template for Backstage/Red Hat Developer Hub that creates and deploys the Liberty Starter app on Kubernetes.
+This is a sample template for Backstage/Red Hat Developer Hub that creates and deploys the Liberty Starter app on Kubernetes.  Though this template may work as is, the best practice for templates in Backstage to be designed by Platform Engineers for their specific infrastructure.  This template should be used as a base for designing your own template in Backstage.  
 
 ## What does it do?
 This template after taking parameters from Backstage/RHDH does the following:
