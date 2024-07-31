@@ -18,9 +18,6 @@ metadata:
     - maven
     - example
   links:
-    - url: https://console-openshift-console${{values.cluster_id}}/dev-pipelines/ns/${{values.namespace}}/
-      title: Pipelines
-      icon: web
     - url: https://console-openshift-console${{values.cluster_id}}/k8s/ns/${{values.namespace}}/deployments/${{values.component_id}}
       title: Deployment
       icon: web
