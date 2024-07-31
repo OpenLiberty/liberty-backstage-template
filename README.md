@@ -1,8 +1,8 @@
 # Open Liberty Backstage Template
-This is a sample template for Backstage/Red Hat Developer Hub that creates and deploys the Liberty Starter app on Kubernetes.  Though this template may work as is, the best practice for templates in Backstage to be designed by Platform Engineers for their specific infrastructure.  This template should be used as a base for designing your own template in Backstage.  
+This is a sample template for Backstage/Red Hat Developer Hub that creates and deploys the Liberty Starter app on Kubernetes.  Though this template may work as is, the best practice is for Platform Engineers to design templates specific to their infrastructure.  This template should be used as a base for designing your own template in Backstage.  
 
 ## What does it do?
-This template after taking parameters from Backstage/RHDH does the following:
+This template (after taking parameters from Backstage/RHDH) does the following:
 1. Creates a new repo on git containing starter code for application development.
 2. Creates a new repo on git containing GitOps configuration for deployment.
 3. Sets up a build pipeline using GitHub Actions.
@@ -28,7 +28,7 @@ In order to use this template in Backstage or RHDH the plugins must be properly 
 Once all the prerequisites are set up you can use this template with the following steps:
 1. Click "Create" in your Backstage instance.
 2. Click "Register Existing Component" on the top right.
-3. Add the following link into the URL: `https://github.com/OpenLiberty/liberty-backstage-demo/blob/main/liberty-template/template.yaml` and click Analyze.
+3. Add the following link into the URL: `https://github.com/OpenLiberty/liberty-backstage-demo/blob/main/liberty-template/template.yaml` and click "Analyze".
 4. Click on "Create" again to view templates.
 5. Click on "Liberty Getting Started" and follow the instructions.
 
