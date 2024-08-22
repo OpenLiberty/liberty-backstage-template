@@ -10,6 +10,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     github.com/project-slug: ${{values.repoOwner}}/${{values.repoName}}
     janus-idp.io/tekton : ${{values.component_id}}
+    argocd/app-selector: rht-gitops.com/${{values.component_id}}-dev
   labels:
     backstage.io/kubernetes-id: ${{values.component_id}}
   tags:
