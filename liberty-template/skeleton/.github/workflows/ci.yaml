@@ -1,4 +1,4 @@
-name: CI
+name: Sample GitHub Actions CI
 
 on:
   push:
@@ -6,12 +6,13 @@ on:
       - main
 
 env:
-  IMAGE_NAME: ${{ github.event.repository.name }}
-  IMAGE_TAGS: latest ${{ github.sha }}
-  IMAGE_REGISTRY: quay.io
-  IMAGE_NAMESPACE: ${{ secrets.REGISTRY_NAMESPACE }}
-  USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-  PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  IMAGE_NAME: dg-dev-dg-lib-02
+  IMAGE_TAGS: latest 
+  IMAGE_REGISTRY: ghcr.io
+  IMAGE_NAMESPACE: danielguinan1
+  USERNAME: 
+  PASSWORD: 
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   build-and-push-image:
@@ -19,31 +20,31 @@ jobs:
     permissions:
       contents: read
       packages: write
-
+      attestations: write
+      id-token: write
+      actions: write
+      
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Build Image
-        id: build-image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.IMAGE_TAGS }}
-          containerfiles: |
-            ./Dockerfile
-
-      - name: Log in to Quay.io
-        uses: redhat-actions/podman-login@v1
-        with:
-          username: ${{ env.USERNAME }}
-          password: ${{ env.PASSWORD }}
-          registry: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAMESPACE }}
-
-      - name: Push To Quay.io
-        id: push-to-quay
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ${{ steps.build-image.outputs.image }}
-          tags: ${{ steps.build-image.outputs.tags }}
-          registry: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAMESPACE }}
+    - uses: actions/checkout@v4
+    - name: Log in to the Container registry
+      uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+      with:
+        registry: ${{ env.IMAGE_REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Build and push Docker image
+      id: push
+      uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+      with:
+        context: .
+        push: true
+        tags: latest
+        labels: ${{ steps.meta.outputs.labels }}
