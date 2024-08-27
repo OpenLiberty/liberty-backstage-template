@@ -104,7 +104,7 @@ spec:
                   title: Image URL
                   type: string
                   description: The Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
-    - title: Provide information about the Git location
+    - title: Provide information about the ArgoCD Location
       required:
         - argocd_name
         - argocd_namespace
