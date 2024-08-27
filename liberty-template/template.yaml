@@ -104,6 +104,21 @@ spec:
                   title: Image URL
                   type: string
                   description: The Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
+    - title: Provide information about the Git location
+      required:
+        - argocd_name
+        - argocd_namespace
+      properties:
+        argocd_name:
+          title: ArgoCD Name
+          type: string
+          description: Name of ArgoCD instance
+          default: argocd
+        argocd_namespace:
+          title: ArgoCD Instance Namespace
+          type: string
+          description: Namespace of ArgoCD instance
+          default: argocd
   steps:
     - id: templateSource
       name: Generating the source code component
@@ -193,6 +208,15 @@ spec:
       input:
         repoContentsUrl: ${{steps.publishSource.output.repoContentsUrl}}
         catalogInfoPath: /catalog-info.yaml
+    - id: create-argocd-resources
+      name: Create ArgoCD Resources
+      action: argocd:create-resources
+      input:
+        appName: ${{parameters.namespace}}-${{parameters.application_id}}-bootstrap
+        argoInstance: ${{parameters.argocd_name}}
+        namespace: ${{parameters.argocd_namespace}}
+        repoUrl: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{ parameters.component_id }}-gitops.git
+        path: 'argocd/'
   output:
     links:
       - title: Source Code Repository
