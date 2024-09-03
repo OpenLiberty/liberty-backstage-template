@@ -215,7 +215,7 @@ spec:
         appName: ${{parameters.namespace}}-${{parameters.application_id}}-bootstrap
         argoInstance: ${{parameters.argocd_name}}
         namespace: ${{parameters.argocd_namespace}}
-        repoUrl: https://${{parameters.repo.host}}/${{parameters.repo.owner}}/${{parameters.component_id}}-gitops.git
+        repoUrl: https://${{parameters.git_host}}/${{parameters.repo_owner}}/${{parameters.application_id}}-gitops.git
         path: 'argocd/'
   output:
     links:
