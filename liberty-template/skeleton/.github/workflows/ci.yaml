@@ -9,8 +9,7 @@ env:
   IMAGE_NAME: ${{ github.event.repository.name }}
   IMAGE_TAG: latest 
   IMAGE_REGISTRY: ghcr.io
-  USERNAME: 
-  PASSWORD: 
+  IMAGE_NAMESPACE: ${{ github.actor }}
 
 jobs:
   build-and-push-image:
