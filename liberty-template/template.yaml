@@ -125,6 +125,8 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
+        copyWithoutTemplating:
+          - .github/workflows/*
         targetPath: ./source
         values:
           git_host: ${{parameters.git_host}}
