@@ -6,7 +6,7 @@ metadata:
     {{- include "backstage.labels" . | nindent 4 }}
     {{- include "liberty-template.labels" . | nindent 4 }}
 spec:
-  applicationImage: ghcr.io/${{parameters.repo_owner}}/${{parameters.namespace}}-${{parameters.application_id}}:latest
+  applicationImage: ghcr.io/${{values.git_owner}}/${{values.component_id}}:latest
   expose: true
   pullPolicy: Always
   serviceability:
