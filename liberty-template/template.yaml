@@ -151,7 +151,7 @@ spec:
       input:
         url: ${{ parameters.ci }}
         copyWithoutTemplating:
-          - ./github-actions/.github/workflows/
+          - .github/workflows/*
         values:
           orgName: ${{ parameters.orgName }}
           repoName: ${{ parameters.repoName }}
