@@ -1,4 +1,4 @@
-name: Sample GitHub Actions CI
+name: CI
 
 on:
   push:
@@ -6,13 +6,11 @@ on:
       - main
 
 env:
-  IMAGE_NAME: dg-dev-dg-lib-02
-  IMAGE_TAGS: latest 
+  IMAGE_NAME: ${{ github.event.repository.name }}
+  IMAGE_TAG: latest 
   IMAGE_REGISTRY: ghcr.io
-  IMAGE_NAMESPACE: danielguinan1
   USERNAME: 
   PASSWORD: 
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
   build-and-push-image:
@@ -46,5 +44,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: latest
+        tags: ${{ env.IMAGE_REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
         labels: ${{ steps.meta.outputs.labels }}
