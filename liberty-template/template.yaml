@@ -118,7 +118,7 @@ spec:
           title: ArgoCD Instance Namespace
           type: string
           description: Namespace of ArgoCD instance
-          default: argocd
+          default: default
   steps:
     - id: templateSource
       name: Generating the source code component
