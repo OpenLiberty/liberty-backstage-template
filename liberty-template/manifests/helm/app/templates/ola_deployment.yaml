@@ -6,10 +6,14 @@ metadata:
     {{- include "backstage.labels" . | nindent 4 }}
     {{- include "liberty-template.labels" . | nindent 4 }}
 spec:
-  applicationImage: icr.io/appcafe/open-liberty
+  applicationImage: ghcr.io/${{values.git_owner}}/${{values.component_id}}:latest
   expose: true
+  pullPolicy: Always
+  serviceability:
+    size: 1Gi  
   service:
     type: ClusterIP
+    port: 9443
   env:
     - name: WLP_LOGGING_MESSAGE_FORMAT
       value: "simple"
