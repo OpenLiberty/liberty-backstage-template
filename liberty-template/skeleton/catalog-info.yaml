@@ -49,6 +49,5 @@ spec:
   type: openapi
   lifecycle: production
   owner: ${{values.owner | dump}}
-  system: idp-system-${{values.namespace}}
   definition:
     $text: ./src/main/resources/META-INF/openapi.yaml
