@@ -34,16 +34,6 @@ spec:
     - ${{values.component_id}}-api
 ---
 apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: idp-system-${{values.namespace}}
-  tags:
-    - liberty
-    - app
-spec:
-  owner: ${{values.owner | dump}}
----
-apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: ${{values.component_id}}-api
